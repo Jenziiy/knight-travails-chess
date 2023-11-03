@@ -11,7 +11,7 @@ export class ChessBoard {
         const tr = document.createElement('tr'); 
         for (let j = 0; j < 8; j++) { 
             const td = document.createElement('td'); 
-            td.setAttribute('id', `${[i]},${[j]}`);
+            td.setAttribute('data', `[${[i]},${[j]}]`);
       
             if ((i + j) % 2 == 0) { 
                 td.setAttribute('class', 'square white-tile'); 
