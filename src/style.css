@@ -1,9 +1,24 @@
-td{
-  width: 30px;
-  height: 30px;
+table{
   border: black solid 1px;
+}
+
+td{
+  width: 40px;
+  height: 40px;
 }
 
 .black-tile{
   background-color: black;
+}
+
+#knight{
+  background-image: url(./img/knight.png);
+  background-size: contain;
+}
+
+#end{
+  background-image: url(./img/pizza.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
