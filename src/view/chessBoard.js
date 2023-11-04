@@ -1,6 +1,7 @@
 export class ChessBoard {
 
   constructor(){
+    this.createBoard();
   }
 
   createBoard(){
