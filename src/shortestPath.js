@@ -1,4 +1,3 @@
-import { Board } from "./Model/board.js";
 export function getShortestPath(startOfSomethingNew, finalDestination, board){
   const queue = [];
   const path = [];
@@ -20,10 +19,4 @@ return {
   gameInfo: `To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible..`,
   pathInfo: `${path[0].toString().replaceAll('],[', '] => [')}`,
 };
-  console.log(`To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible..`);
-  console.log(`${path[0].toString().replaceAll('],[', '] => [')}`);
 }
-
-
-//let gamePlay = new Board(8);
-//getShortestPath('[0,0]','[2,4]', gamePlay);
