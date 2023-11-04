@@ -16,6 +16,10 @@ export function getShortestPath(startOfSomethingNew, finalDestination, board){
       if(!setOfVisitedVertices.has(coords)) queue.push([coords, [...currentPath, coords]])
     }
   }
+return {
+  gameInfo: `To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible..`,
+  pathInfo: `${path[0].toString().replaceAll('],[', '] => [')}`,
+};
   console.log(`To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible..`);
   console.log(`${path[0].toString().replaceAll('],[', '] => [')}`);
 }

@@ -10,6 +10,9 @@ let END = null;
 const chessBoard = new ChessBoard();
 
 const squares = document.getElementsByClassName('square');
+const pStats = document.createElement('p');
+const pPath = document.createElement('p');
+const main = document.getElementById('app');
 Array.from(squares).forEach(square => {
   
   square.addEventListener('click', () => { 
@@ -22,7 +25,11 @@ Array.from(squares).forEach(square => {
       END = square.getAttribute('data');
       square.setAttribute('id', 'end');
       END_SET = true;
-      getShortestPath(START, END, gamePlay);
+      const resultingShortestPath = getShortestPath(START, END, gamePlay);
+      pStats.textContent = resultingShortestPath.gameInfo;
+      main.appendChild(pStats);
+      pPath.textContent = resultingShortestPath.pathInfo;
+      main.appendChild(pPath);
   }
   });
 });
