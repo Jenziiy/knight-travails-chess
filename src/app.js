@@ -10,12 +10,11 @@ const chessBoard = new ChessBoard();
 chessBoard.createBoard();
 
 class Node {
-  constructor(currentNode, childNodes = null){
-    this.ancestors = ancestors.push(currentNode);
-    this.current = currentNode;
-    this.next = childNodes;
+  map = new Map();
+  constructor(position = null){
+    this.position = position;
+    this.map = map.set
     this.visited = false;
-    Node.allInstances.push(this);
   }
 
   countSteps(){
@@ -23,7 +22,7 @@ class Node {
   }
 }
 
-function enqueue(position){
+function getNeighborMoves(position){
   const queue = [];
 const possibleMovesList = [ [-2, -1], [-2, 1], [2, 1], [-1, 2], [-1, -2], [1, -2], [1, 2], [2, -1] ];
 possibleMovesList.forEach((coordinate) => {
@@ -57,19 +56,18 @@ function getShortestPath(start, end){
   let finalDestination = end;
   const movesList = []
   const queue = [];
-  const queueChild = [];
-  const nodeSet = new Set();
+  const map = new Map();
   
 
   if (startingPosition.toString() === finalDestination.toString()) return console.log(`[${finalDestination}] only took 1 step`);
-  queue.push(...enqueue(startingPosition));
+  queue.push(...getNeighborMoves(startingPosition));
   console.log(queue);
-  let hello = queue.find((el) => el.toString() === end.toString());
-  if (hello) return console.log(`[${start}] --> [${hello}] took 2 steps`);
-  while(!hello && queue > 0){
+  let shortestPath = queue.find((el) => el.toString() === end.toString());
+  if (shortestPath) return console.log(`[${start}] --> [${shortestPath}] took 2 steps`);
+  while(!shortestPath && queue > 0){
   currentDestination = queue.shift();
-    new Node(null,)
-    nodeSet.add(...enqueue(currentDestination));
+    nodeSet.add(...getNeighborMoves(currentDestination));
+    let knight = new Node(currentDestination);
  }
  console.log(hello);
 }
