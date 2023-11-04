@@ -1,32 +1,5 @@
-class Board {
-  graph = new Map();
-  constructor(boardDimension = 8){
-    this.boardDimension = boardDimension;
-    this.setVertices(this.boardDimension);
-    this.setEdges();
-  };
-
-  setVertices(){
-    for (let i = 0; i < this.boardDimension; i++) {
-      for (let j = 0; j < this.boardDimension ; j++) {
-        this.graph.set(JSON.stringify([i,j]),[]);
-      };
-    };
-  };
-
-  setEdges(){
-    for ( let [vertex] of this.graph ){
-      const [x,y] = JSON.parse(vertex);
-      const possibleMovesList = [ [-2, -1], [-2, 1], [2, 1], [-1, 2], [-1, -2], [1, -2], [1, 2], [2, -1] ];
-      possibleMovesList.forEach(([cX,cY]) => {
-      let adjVertex = JSON.stringify([(cX + x), (cY + y)]); 
-      if(this.graph.has(adjVertex) && !this.graph.get(vertex).includes(adjVertex)) this.graph.get(vertex).push(adjVertex);
-      });
-    };
-  };
-};
-
-function getShortestPath(startOfSomethingNew, finalDestination){
+import { Board } from "./Model/board.js";
+export function getShortestPath(startOfSomethingNew, finalDestination, board){
   const queue = [];
   const path = [];
   const setOfVisitedVertices = new Set();
@@ -37,14 +10,16 @@ function getShortestPath(startOfSomethingNew, finalDestination){
     let [currentVertex, currentPath] = queue.shift();
     setOfVisitedVertices.add(currentVertex);
     if(currentVertex === finalDestination) path.push(currentPath);
-    const adjacentVertices = gamePlay.graph.get(currentVertex.toString());
+    console.log(currentVertex);
+    const adjacentVertices = board.graph.get(currentVertex);
     for (let coords of adjacentVertices){
       if(!setOfVisitedVertices.has(coords)) queue.push([coords, [...currentPath, coords]])
     }
   }
-  console.log(`To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible.. \n follow ${path.toString().replaceAll('],[', '] => [')}`);
+  console.log(`To get from ${startOfSomethingNew} to ${finalDestination} as fast as possible..`);
+  console.log(`${path[0].toString().replaceAll('],[', '] => [')}`);
 }
 
 
-let gamePlay = new Board(8);
-getShortestPath('[0,0]','[2,4]');
+//let gamePlay = new Board(8);
+//getShortestPath('[0,0]','[2,4]', gamePlay);
